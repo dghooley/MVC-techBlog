@@ -1,0 +1,35 @@
+{
+  "name": "mvc-techblog",
+  "version": "1.0.0",
+  "description": "CMS-style blog site",
+  "main": "server.js",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "connect-session-sequelize": "^7.1.2",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.3.4",
+    "express-session": "^1.17.2",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.3.3-rc.0",
+    "sequelize": "^6.9.0"
+  },
+  "devDependencies": {
+    "jest": "^27.3.1"
+  },
+  "scripts": {
+    "test": "npm start",
+    "start": "node server.js",
+    "seeds": "node seeds/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dghooley/MVC-techBlog.git"
+  },
+  "author": "Derick Hooley",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dghooley/MVC-techBlog/issues"
+  },
+  "homepage": "https://github.com/dghooley/MVC-techBlog#readme"
+}

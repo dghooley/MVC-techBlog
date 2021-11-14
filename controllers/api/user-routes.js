@@ -73,7 +73,7 @@ router.post("/", async (req, res)=>{
     catch (err){
         res.status(500).json(err);
     }
-})
+});
 
 router.post("/login", async (req, res)=>{
     try{
@@ -101,7 +101,7 @@ router.post("/login", async (req, res)=>{
     catch (err){
         res.status(500).json(err);
     }
-})
+});
 
 router.post('/logout', (req, res) => {
     if (req.session.loggedIn) {

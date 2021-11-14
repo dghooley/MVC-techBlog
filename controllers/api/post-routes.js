@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const sequelize = require('../../config/connection');
 const { Post, User, Comment } = require('../../models');
+const sequelize = require('../../config/connection');
 const withAuth = require('../../utils/auth');
 
 router.get('/', (req, res) => {
@@ -35,7 +35,6 @@ router.get('/', (req, res) => {
         });
 
 });
-
 router.get('/:id', (req, res) => {
     Post.findOne({
             where: {
@@ -106,7 +105,6 @@ router.put('/:id', withAuth, (req, res) => {
             res.status(500).json(err);
         });
 });
-
 router.delete('/:id', withAuth, (req, res) => {
     Post.destroy({
         where: {

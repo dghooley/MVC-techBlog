@@ -4,13 +4,9 @@ const sequelize = require('../../config/connection');
 const withAuth = require('../../utils/auth');
 
 router.get('/', (req, res) => {
-    console.log('');
+    console.log('not connecting');
     Post.findAll({
-            attributes: ['id',
-                'title',
-                'content',
-                'created_at'
-            ],
+            attributes: ['id','title','post_content','created_at'],
             order: [
                 ['created_at', 'DESC']
             ],
@@ -41,7 +37,7 @@ router.get('/:id', (req, res) => {
                 id: req.params.id
             },
             attributes: ['id',
-                'content',
+                'post_content',
                 'title',
                 'created_at'
             ],

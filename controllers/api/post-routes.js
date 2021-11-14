@@ -4,7 +4,7 @@ const sequelize = require('../../config/connection');
 const withAuth = require('../../utils/auth');
 
 router.get('/', (req, res) => {
-    console.log('======================');
+    console.log('');
     Post.findAll({
             attributes: ['id',
                 'title',

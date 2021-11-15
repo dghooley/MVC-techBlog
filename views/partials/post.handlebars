@@ -1,9 +1,14 @@
-<a href="/viewpost/{{id}}">
-    <div class="card">
-        <h3 class="post-header">{{ title }} </h3>
-        <h4>Posted by {{user.username}} on 11/14/2021</h4>
-        <div class="container">
-            <p class="post-text">{{ body }}</p>
+<article class="post">
+    <div class="post-head">
+        <div class="title">
+            <a href="/post/{{id}}">{{title}}</a>
+        </div>
+        <div class="meta">
+            Posted By {{user.username}} on {{format_date created_at}} |
+            {{comments.length}} {{format_plural "comment" comments.length}}
         </div>
     </div>
-</a>
+    <div class="post-text">
+        {{post_text}}
+    </div>
+</article>

@@ -1,10 +1,10 @@
 const router = require("express").Router();
 const { User, Post, Comment } = require("../../models");
 
-//get all the users
+
 router.get("/", (req, res) => {
     User.findAll({
-        attributes: ["id", "username", "email", "password"], //TODO remove password in the futrue
+        attributes: ["id", "username", "email", "password"], 
         include: [
             {
                 model: Post,
@@ -17,7 +17,7 @@ router.get("/", (req, res) => {
                 attributes: ["id", "comment_text", "post_id"],
             },
         ],
-    }) //include the posts and comments of this user
+    }) 
         .then((dbUserData) => {
             res.json(dbUserData);
         })
@@ -34,7 +34,6 @@ router.get("/:id", (req, res) => {
             id: req.params.id,
         },
         attributes: ["id", "username", "email", "password"], 
-        //remove password in the futrue
         include: [
             {
                 model: Post,
@@ -47,7 +46,7 @@ router.get("/:id", (req, res) => {
                 attributes: ["id", "comment_text", "post_id"],
             },
         ],
-    }) //include the posts and comments of this user
+    }) 
         .then((dbUserData) => {
             if (!dbUserData) {
                 res.status(404).json({ message: "No User found with this id" });
@@ -64,32 +63,27 @@ router.get("/:id", (req, res) => {
 //add user
 router.post("/", (req, res) => {
     User.create({
-        //expects username, email, password
         username: req.body.username,
         email: req.body.email,
         password: req.body.password,
     })
         .then((dbUserData) => {
-            //save the data into a session
             req.session.save(() => {
-                // we run the save function
                 req.session.user_id = dbUserData.id; 
-                //and give it the data we want to save
                 req.session.username = dbUserData.username;
                 req.session.loggedIn = true;
                 res.json(dbUserData); 
-                //Run this in callback so we make sure the session is updated before we respond
             });
         })
         .catch((err) => {
             res.status(500).json(err);
         });
 });
-//log in the user
+
 router.post("/login", (req, res) => {
-    //console.log("request recieved!");
+    //console.log("request received");
     
-    //find the user in question
+
     User.findOne({
         where: {
             email: req.body.email,

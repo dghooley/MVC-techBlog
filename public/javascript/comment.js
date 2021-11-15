@@ -1,4 +1,4 @@
-async function commentFormHandler(event) {
+/*async function commentFormHandler(event) {
     event.preventDefault();
 
     const comment_text = document.querySelector('input[name="comment-body"]').value.trim();
@@ -30,3 +30,4 @@ async function commentFormHandler(event) {
 }
 
 document.querySelector('.comment-form').addEventListener('submit', commentFormHandler);
+*/

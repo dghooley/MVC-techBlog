@@ -1,40 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MVC Tech Blog</title>
-    <link rel="stylesheet" href="/stylesheets/style.css">
+    <meta charset="utf-8">
+    <title>Tech Blog</title>
+    <link rel="stylesheet" href="/public/stylesheets/main.css">
+
 </head>
 
 <body>
-    <div class="wrapper">
-        <header class="hero">
-            <div>
-                <nav class"nav">
-                    <a class="link" href="/">Home</a>
-                    <a class="link" href="/dashboard">Dashboard</a>
-                    {{#if loggedIn}}
-                    <a class="link" href="/" id="logout">Logout</a>
-                    {{else}}
-                    <a class="link" href="/login">Login</a>
-                    {{/if}}
-                </nav>
-            </div>
 
-            <h1 class="app-title"><i class="fab "></i>The Tech Blog</h1>
-        </header>
+    <nav id="navbar">
+        <ul id="navbar-ul">
+            <li>
+                <p><a class="link" href="/">Home</a></p>
+            </li>
+            {{ #if loggedIn }}
+            <li>
+                <p><a class="link" href="/dashboard">Dashboard</a></p>
+            </li>
+            <li>
+                <p><button id="logout-btn" class="btn-no-style">Logout</button> </p>
+            </li>
 
-        <main>
-            {{{ body }}}
-        </main>
-    </div>
-
-    {{#if loggedIn}}
-    <script src="/javascript/logout.js"></script>
-    {{/if}}
+            {{else}}
+            <li>
+                <p><a class="link" href="/login">Login</a></p>
+            </li>
+            {{/if}}
+        </ul>
+        <h1 id="nav-header">The Tech Blog</h1>
+    </nav>
+    {{{ body }}}
 
 </body>
+
+<script src="/public/javascript/logout.js"></script>
+<script src="/public/javascript/home.js"></script>
 
 </html>

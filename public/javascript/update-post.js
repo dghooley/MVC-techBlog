@@ -3,10 +3,14 @@ async function createPostHandler(event) {
 
     const title = document.querySelector("#post-title").value.trim();
     const body = document.querySelector("#post-body").value.trim();
+    const post_id = window.location.toString().split("/")[
+        window.location.toString().split("/").length - 1
+    ];
 
     if (body) {
-        const response = await fetch("/api/posts", {
-            method: "POST",
+
+        const response = await fetch("/api/posts/" + post_id, {
+            method: "PUT",
             body: JSON.stringify({
                 title,
                 body,
@@ -16,8 +20,9 @@ async function createPostHandler(event) {
             },
         });
 
+
         if (response.ok) {
-            document.location.replace("/dashboard");
+            document.location.replace("/dashboard"); 
         } else {
             alert(response.statusText); 
         }

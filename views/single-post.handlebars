@@ -1,14 +1,14 @@
 <div class="card single-post-padding">
-    <h1 id="post-title" class="post-header">{{ post.title }} </h1>
+    <h1 id="post-title" class="post-header">{{post.title}} </h1>
     <h4>Posted by {{post.user.username}} on 12/1/2020</h4>
     <div class="container">
         <p id="post-body" class="post-text post-text-padding">{{post.body}}</p>
     </div>
 
-    {{ #if currentUser }}
+    {{#if currentUser}}
     <button id="edit-btn">Edit</button>
     <button id="delete-btn">Delete</button>
-    {{ /if }}
+    {{/if}}
 </div>
 
 <div class="padding-20">
@@ -19,11 +19,11 @@
     </form>
 </div>
 
-{{ #each post.comments as |aComment| }}
-{{ > comment aComment }}
-{{ /each }}
+{{#each post.comments as |aComment|}}
+{{> comment aComment}}
+{{/each}}
 <link rel="stylesheet" href="../public/stylesheets/single-post.css">
 <script src="../public/javascript/single-post.js"></script>
-{{ #if currentUser }}
+{{#if currentUser}}
 <script src="../public/javascript/edit-delete-post.js"> </script>
-{{ /if} }
+{{/if}}

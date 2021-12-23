@@ -1,29 +1,51 @@
-<div class="card single-post-padding">
-    <h1 id="post-title" class="post-header">{{post.title}} </h1>
-    <h4>Posted by {{post.user.username}} on 12/1/2020</h4>
-    <div class="container">
-        <p id="post-body" class="post-text post-text-padding">{{post.body}}</p>
+{{log onePost}}
+<div class="">
+    <div class="card">
+        <div class="card-header flex-row">
+            <h2>
+                {{onePost.title}}
+            </h2>
+            <div>
+                <p>
+                    posted by: {{onePost.user.name}} on {{format_date onePost.createdAt}}
+                </p>
+            </div>
+            <div>
+                {{onePost.content}}
+            </div>
+        </div>
     </div>
-
-    {{#if currentUser}}
-    <button id="edit-btn">Edit</button>
-    <button id="delete-btn">Delete</button>
+    {{#if onePost.comments}}
+    <div class="card">
+        <div class="card-header">
+            <h2>
+                comments
+            </h2>
+        </div>
+        <div class="card-body">
+            {{#each onePost.comments}}
+            <div>
+                <p>
+                    {{content}}
+                </p>
+            </div>
+            {{/each}}
+        </div>
+    </div>
     {{/if}}
-</div>
 
-<div class="padding-20">
-    <form id="comment-form " class="padding-20">
-        <label for="comment-text">Leave A Comment</label>
-        <input class="padding-20" type="textarea" name="comment-text" id="comment-text">
-        <button class="padding-20" id="post-comment-btn">Post!</button>
+    <form id="newComment" class="card">
+        <div class="card-header">
+            <h2>
+                add new comment
+            </h2>
+        </div>
+        <div class="card-body">
+            <input type="hidden" id="postId" value="{{onePost.id}}"/>
+            <textarea name="commentContent" id="content" cols="30" rows="10"></textarea>
+            <button class="btn">submit</button>
+        </div>
     </form>
 </div>
 
-{{#each post.comments as |aComment|}}
-{{> comment aComment}}
-{{/each}}
-<link rel="stylesheet" href="../public/stylesheets/single-post.css">
-<script src="../public/javascript/single-post.js"></script>
-{{#if currentUser}}
-<script src="../public/javascript/edit-delete-post.js"> </script>
-{{/if}}
+<script src="../public/js/comment.js"></script>

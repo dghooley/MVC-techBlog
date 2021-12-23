@@ -1,3 +1,5 @@
 DROP DATABASE IF EXISTS MVC_tech_Blog;
 
 CREATE DATABASE MVC_tech_Blog;
+
+USE MVC_tech_Blog;

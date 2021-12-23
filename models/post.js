@@ -1,41 +1,46 @@
-// set up imports
-const { Model, DataTypes } = require("sequelize");
-const sequelize = require("../config/connection");
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/connection');
 
-// set up the post object
-class Post extends Model { }
+// create post model
+class Post extends Model {}
 
-// set up the init function
 Post.init(
     {
         id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
-            autoIncrement: true,
+            autoIncrement: true
         },
         title: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: false
         },
-        body: {
+        // what's in the post
+        content: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        // Add the reference to the user id that made it
+        date_created: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: DataTypes.NOW
+        },
+        // specifies user post belongs to
         user_id: {
             type: DataTypes.INTEGER,
             references: {
-                model: "user",
-                key: "id",
-            },
-        },
+                model: 'user',
+                key: 'id'
+            }
+        }
     },
     {
         sequelize,
+        timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: "post",
+        modelName: 'post'
     }
 );
 
